@@ -1,5 +1,4 @@
 import SpriteKit
-import CoreData
 
 func +(left: CGPoint, right: CGPoint) -> CGPoint {
   return CGPoint(x: left.x + right.x, y: left.y + right.y)
@@ -49,10 +48,9 @@ class GameScene: SKScene {
   let label = SKLabelNode(fontNamed: "Chalkduster")
   var teethShot = 0
   var shots = 0
-  var highscore: NSManagedObject?
+	var highscore = 0
   
   override func didMove(to view: SKView) {
-    highscore?.value(forKey: "highScore") as? Int32
     playerTextures = [texture2, texture]
     label.text = "Teeth Caught: \(teethShot)"
     label.fontSize = 10
@@ -107,6 +105,16 @@ class GameScene: SKScene {
     let loseAction = SKAction.run() { [weak self] in
       guard let `self` = self else { return }
       let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+			if let hScore = UserDefaults.standard.value(forKey: "highScore") as? Int {
+				if self.teethShot > hScore {
+					UserDefaults.standard.set(self.teethShot, forKey: "highScore")
+					print("NEW HIGH SCORE")
+				}
+			} else {
+				UserDefaults.standard.set(self.teethShot, forKey: "highScore")
+				
+			}
+			
       let gameOverScene = GameOverScene(size: self.size, wasHighScore: false, numKilled: self.teethShot)
       self.view?.presentScene(gameOverScene, transition: reveal)
     }
@@ -163,14 +171,8 @@ class GameScene: SKScene {
   func projectileDidCollideWithMonster(projectile: SKSpriteNode, monster: SKSpriteNode) {
     projectile.removeFromParent()
     monster.removeFromParent()
-    
     teethShot += 1
     label.text = "Teeth Caught: \(teethShot)"
-//    if teethShot == 30 {
-//      let reveal = SKTransition.flipHorizontal(withDuration: 1.0)
-//      let gameOverScene = GameOverScene(size: self.size, won: true)
-//      view?.presentScene(gameOverScene, transition: reveal)
-//    }
   }
 }
 

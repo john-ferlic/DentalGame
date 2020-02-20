@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1181386523FB78D200496EEC /* NinjaAttack.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1181386323FB78D200496EEC /* NinjaAttack.xcdatamodeld */; };
 		11E278F623F8E8B6006CA2DF /* StartingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E278F523F8E8B6006CA2DF /* StartingScene.swift */; };
 		5C2901831F8F6DE700803663 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */; };
 		AFD63F872036493600E08C66 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD63F862036493600E08C66 /* GameViewController.swift */; };
@@ -21,7 +20,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1181386423FB78D200496EEC /* NinjaAttack.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NinjaAttack.xcdatamodel; sourceTree = "<group>"; };
 		11E278F523F8E8B6006CA2DF /* StartingScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartingScene.swift; sourceTree = "<group>"; };
 		5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = NinjaAttack/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFD63F862036493600E08C66 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = NinjaAttack/GameViewController.swift; sourceTree = "<group>"; };
@@ -89,7 +87,6 @@
 				AFD63F862036493600E08C66 /* GameViewController.swift */,
 				AFD63F8A203649B500E08C66 /* GameOverScene.swift */,
 				11E278F523F8E8B6006CA2DF /* StartingScene.swift */,
-				1181386323FB78D200496EEC /* NinjaAttack.xcdatamodeld */,
 			);
 			name = NinjaAttack;
 			sourceTree = "<group>";
@@ -173,7 +170,6 @@
 				11E278F623F8E8B6006CA2DF /* StartingScene.swift in Sources */,
 				AFD63F872036493600E08C66 /* GameViewController.swift in Sources */,
 				AFD63F8B203649B500E08C66 /* GameOverScene.swift in Sources */,
-				1181386523FB78D200496EEC /* NinjaAttack.xcdatamodeld in Sources */,
 				D2A5F2211F4A96D0005CD714 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,19 +359,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		1181386323FB78D200496EEC /* NinjaAttack.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				1181386423FB78D200496EEC /* NinjaAttack.xcdatamodel */,
-			);
-			currentVersion = 1181386423FB78D200496EEC /* NinjaAttack.xcdatamodel */;
-			path = NinjaAttack.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = D2A5F1F81F4A9143005CD714 /* Project object */;
 }

@@ -4,19 +4,20 @@ import SpriteKit
 class GameOverScene: SKScene {
   
   private var button: SKLabelNode?
-  private var highscore: Int = 0
+  private var highScore = 0
   
   init(size: CGSize, wasHighScore:Bool, numKilled: Int) {
     super.init(size: size)
-    if wasHighScore {
-      highscore = numKilled
-    }
+		
+		if let score = UserDefaults.standard.value(forKey: "highScore") as? Int {
+			highScore = score
+		}
+
     backgroundColor = SKColor.yellow
-//    let message = won ? "You Won!" : "Game Over"
     let highScoreLabel = SKLabelNode()
     highScoreLabel.fontName = "Chalkduster"
     highScoreLabel.fontSize = 20
-    highScoreLabel.text = "High Score: \(highscore)"
+    highScoreLabel.text = "High Score: \(highScore)"
     highScoreLabel.fontColor = SKColor.black
     highScoreLabel.position = CGPoint(x: size.width * 0.85, y: size.height * 0.9)
     let message = "You Brushed \(numKilled) Teeth!"
@@ -35,16 +36,6 @@ class GameOverScene: SKScene {
     addChild(butt)
     addChild(label)
     addChild(highScoreLabel)
-//    run(SKAction.sequence([
-//      SKAction.wait(forDuration: 3.0),
-//      SKAction.run() { [weak self] in
-//        guard let `self` = self else { return }
-//        let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-//        let scene = GameScene(size: size)
-//        self.view?.presentScene(scene, transition:reveal)
-//      }
-//      ]))
-    
   }
   
   required init(coder aDecoder: NSCoder) {
