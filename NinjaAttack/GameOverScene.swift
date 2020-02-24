@@ -3,39 +3,47 @@ import SpriteKit
 
 class GameOverScene: SKScene {
   
-  private var button: SKLabelNode?
-  private var highScore = 0
-  
-  init(size: CGSize, wasHighScore:Bool, numKilled: Int) {
+  init(size: CGSize, teethBrushed: Int, accuracy: Double) {
     super.init(size: size)
-		
-		if let score = UserDefaults.standard.value(forKey: "highScore") as? Int {
-			highScore = score
-		}
+    let accuracyString = String(format: "%.0f", accuracy*100)
+    let score = ((Int(accuracyString) ?? 0) * teethBrushed)/10
+    let mainLabel = SKLabelNode()
+		var highScore = UserDefaults.standard.integer(forKey: "highScore")
+    if score > highScore {
+      highScore = score
+      UserDefaults.standard.set(highScore, forKey: "highScore")
+      mainLabel.text = "Congrats! You have a new High Score: \(highScore)"
+      mainLabel.fontSize = 30
+    } else {
+      mainLabel.text = "Your Score: \(score)"
+      mainLabel.fontSize = 50
+    }
+    mainLabel.fontName = "Chalkduster"
 
-    backgroundColor = SKColor.yellow
+    mainLabel.fontColor = SKColor.white
+    mainLabel.position = CGPoint(x: size.width/2, y: size.height/2)
+    backgroundColor = SKColor.blue
     let highScoreLabel = SKLabelNode()
     highScoreLabel.fontName = "Chalkduster"
-    highScoreLabel.fontSize = 20
+    highScoreLabel.fontSize = 15
     highScoreLabel.text = "High Score: \(highScore)"
-    highScoreLabel.fontColor = SKColor.black
+    highScoreLabel.fontColor = SKColor.white
     highScoreLabel.position = CGPoint(x: size.width * 0.85, y: size.height * 0.9)
-    let message = "You Brushed \(numKilled) Teeth!"
-    let label = SKLabelNode(fontNamed: "Chalkduster")
-    label.text = message
-    label.fontSize = 40
-    label.fontColor = SKColor.black
-    label.position = CGPoint(x: size.width/2, y: size.height/2)
-    
-    button = SKLabelNode(fontNamed: "Chalkduster")
-    guard let butt = button else { return }
-    butt.text = "Click here to play again"
-    butt.fontSize = 20
-    butt.fontColor = SKColor.black
-    butt.position = CGPoint(x: size.width/2, y: size.height/5)
-    addChild(butt)
-    addChild(label)
+    let accuracyLabel = SKLabelNode()
+    accuracyLabel.fontName = "Chalkduster"
+    accuracyLabel.fontSize = 15
+    accuracyLabel.text = "Accuracy: \(accuracyString)%"
+    accuracyLabel.fontColor = SKColor.white
+    accuracyLabel.position = CGPoint(x: size.width * 0.85, y: size.height * 0.85)
+    let playAgainLabel = SKLabelNode(fontNamed: "Chalkduster")
+    playAgainLabel.text = "Tap the screen to play again"
+    playAgainLabel.fontSize = 15
+    playAgainLabel.fontColor = SKColor.white
+    playAgainLabel.position = CGPoint(x: size.width/2, y: size.height/5)
+    addChild(playAgainLabel)
+    addChild(mainLabel)
     addChild(highScoreLabel)
+    addChild(accuracyLabel)
   }
   
   required init(coder aDecoder: NSCoder) {
@@ -43,19 +51,6 @@ class GameOverScene: SKScene {
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    for t in touches{
-      self.touchDown(atPoint: t.location(in: self))
-    }
-  }
-  
-  func touchDown(atPoint pos: CGPoint) {
-    let nodes = self.nodes(at: pos)
-    if let butt = button {
-      if nodes.contains(butt){
-        let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-        let game = GameScene(size: self.size)
-        view?.presentScene(game, transition: reveal)
-      }
-    }
+    view?.presentScene(GameScene(size: self.size), transition: SKTransition.flipVertical(withDuration: 0.5))
   }
 }

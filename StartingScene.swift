@@ -7,12 +7,12 @@ class StartingScene: SKScene {
   
   override init(size: CGSize) {
     super.init(size: size)
-    backgroundColor = SKColor.black
+    backgroundColor = SKColor.blue
     addSprites(node: "tooth", y: size.height * 0.9)
     addSprites(node: "mj1", y: size.height * 0.20)
     label = SKLabelNode(fontNamed: "Chalkduster")
     let subText = SKLabelNode(fontNamed: "Chalkduster")
-    subText.text = "Shoot 30 teeth to win the game!"
+    subText.text = "Brush as many teeth as possible! Accuracy Effects Score :)"
     subText.fontSize = 20
     subText.fontColor = SKColor.white
     subText.position = CGPoint(x: size.width/2, y: size.height * 0.40)
